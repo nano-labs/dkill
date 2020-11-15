@@ -41,7 +41,7 @@ def container_picker(running_contaniers):
         exit_error("No containers running. Come back later")
 
     contaniers.extend(["ALL CONTAINERS"])
-    cli = Check(prompt="Check which containers you want to kill", check="> ", choices=contaniers)
+    cli = Check(prompt="Use SPACEBAR to check which containers you want to kill", check="> ", choices=contaniers)
     result = cli.launch()
     if "ALL CONTAINERS" in result:
         ids = list(running_contaniers.values())
@@ -52,7 +52,6 @@ def container_picker(running_contaniers):
 
 def docker_kill(ids):
     """docker kill <ids>."""
-    print(repr(ids))
     print(subprocess.check_output(['docker', 'kill'] + ids).decode())
 
 
