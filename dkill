@@ -1,0 +1,66 @@
+#!/usr/bin/env python3.8
+"""Simple menu to kill docker containers."""
+import subprocess
+from bullet import Check
+import sys
+import json
+
+
+def exit_error(message):
+    """Exit script with exit code 1 and print message to stderr."""
+    if not message.endswith("\n"):
+        message = "{message}\n".format(message=message)
+    sys.stderr.write(message)
+    sys.exit(1)
+
+
+def get_containers():
+    """Return dict of container name:id."""
+    running_contaniers = {}
+    try:
+        # check_output
+        docker_ps = subprocess.check_output(
+            ["docker", "ps", "--format", "'{{json . }}'"]).decode()
+        # docker_ps = subprocess.run(
+        #     ["docker", "ps", "--format", "'{{json . }}'"], capture_output=True
+        # ).stdout.decode()
+    except FileNotFoundError:
+        exit_error("'docker' command not found")
+    for l in docker_ps.split("\n"):
+        if not l:
+            continue
+        parsed = json.loads(l[1:-1])
+        running_contaniers[parsed["Names"]] = parsed["ID"]
+    return running_contaniers
+
+
+def container_picker(running_contaniers):
+    """Return a list of selected container's ids."""
+    contaniers = sorted(list(running_contaniers.keys()))
+    if not contaniers:
+        exit_error("No containers running. Come back later")
+
+    contaniers.extend(["ALL CONTAINERS"])
+    cli = Check(prompt="Check which containers you want to kill", check="> ", choices=contaniers)
+    result = cli.launch()
+    if "ALL CONTAINERS" in result:
+        ids = list(running_contaniers.values())
+    else:
+        ids = [running_contaniers[r] for r in result]
+    return ids
+
+
+def docker_kill(ids):
+    """docker kill <ids>."""
+    print(repr(ids))
+    print(subprocess.check_output(['docker', 'kill'] + ids).decode())
+
+
+def main():
+    running_contaniers = get_containers()
+    ids = container_picker(running_contaniers)
+    docker_kill(ids)
+
+
+if __name__ == '__main__':
+    main()
