@@ -25,7 +25,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/nano-labs/dkill',
-    download_url='https://github.com/nano-labs/dkill/archive/main.zip',
+    download_url='https://github.com/nano-labs/dkill/archive/release/0.0.1.zip',
 
     # Author details
     author='Fabio Pachelli Pacheco',
