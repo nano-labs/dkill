@@ -25,7 +25,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/nano-labs/dkill',
-    download_url='https://github.com/nano-labs/dkill/archive/main.zip',
+    download_url='https://github.com/nano-labs/dkill/archive/release/0.0.2.zip',
 
     # Author details
     author='Fabio Pachelli Pacheco',
@@ -51,7 +51,7 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.6',
     ],
 
     # What does your project relate to?
