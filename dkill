@@ -52,6 +52,8 @@ def container_picker(running_contaniers):
 
 def docker_kill(ids):
     """docker kill <ids>."""
+    if not ids:
+        exit_error("No container selected")
     print(subprocess.check_output(['docker', 'kill'] + ids).decode())
 
 
