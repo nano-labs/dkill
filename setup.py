@@ -17,7 +17,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='dkill',
 
-    version='0.0.1',
+    version='0.0.3',
 
     description='Easy docker container pick-and-kill',
     long_description=long_description,
@@ -25,7 +25,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/nano-labs/dkill',
-    download_url='https://github.com/nano-labs/dkill/archive/release/0.0.2.zip',
+    download_url='https://github.com/nano-labs/dkill/archive/release/0.0.3.zip',
 
     # Author details
     author='Fabio Pachelli Pacheco',
