@@ -17,3 +17,6 @@ pip3 install dkill
 
 ## How does it work
 It uses `docker ps` command to list all running container then `docker kill <CONTAINER IDs>` to kill them
+
+### See also
+[dstart](https://github.com/nano-labs/dstart) - Docker Start
